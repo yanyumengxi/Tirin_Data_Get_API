@@ -9,6 +9,7 @@ const searchRouter = require('./routes/search');
 const playAddressRouter = require('./routes/playAddress');
 const lyricRouter = require('./routes/lyric');
 const picRouter = require('./routes/pic');
+const recommendRouter = require('./routes/recommend');
 
 
 const app = express();
@@ -24,10 +25,13 @@ app.use(cookieParser());
 app.use(lessMiddleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Song Parent API Header
 app.use('/song', searchRouter);
 app.use('/song', playAddressRouter);
 app.use('/song', lyricRouter);
 app.use('/song', picRouter);
+// Song List Parent API Header
+app.use('/songlist', recommendRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

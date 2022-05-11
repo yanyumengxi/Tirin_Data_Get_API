@@ -1,4 +1,5 @@
 const request = require('../request.js')
+const req = require('request');
 
 class kuwo {
     static search (url, callback) {
@@ -12,6 +13,9 @@ class kuwo {
     }
     static get_pic (url, callback) {
         request.get(url, callback);
+    }
+    static get_recommend_songlist (url, callback) {
+        request.get(url, callback)
     }
 }
 

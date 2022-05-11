@@ -1,5 +1,6 @@
 const request = require('../request.js')
 const req = require("request");
+const {lyric_URL_Header, recommend_URL_Header} = require("../../config/config");
 
 class qq {
     static search (url, callback) {
@@ -9,7 +10,7 @@ class qq {
         request.get(url, callback);
     }
     static get_lyric (url, id, callback) {
-        let data = url.replace("http://c.y.qq.com/lyric/fcgi-bin/fcg_query_lyric.fcg?", "");
+        let data = url.replace(lyric_URL_Header, "");
         let options = {
             url: url,
             method: 'POST',
@@ -22,6 +23,18 @@ class qq {
     }
     static get_pic (url, callback) {
         callback(url);
+    }
+    static get_recommend_songlist (url, callback) {
+        let data = url.replace(recommend_URL_Header, "");
+        let options = {
+            url: url,
+            method: 'POST',
+            headers: {
+                "referer": "https://y.qq.com/"
+            },
+            body: data
+        }
+        req(options, callback);
     }
 }
 
